@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_238546_hiring_ap.Interview</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>Interview</name>
+        <script><![CDATA[var Interview = Class.create();
+Interview.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	getData: function() {
+		var jobID = this.getParameter('sysparm_jobID');
+		var interviewID = this.getParameter('sysparm_interviewID');
+		
+		var gr = new GlideRecord('x_238546_hiring_ap_interview');
+		gr.addQuery('job', jobID);
+		gr.addQuery('sys_id', 'DOES NOT CONTAIN', interviewID);
+		gr.orderByDesc('sys_created_on');
+		
+		//gr.setLimit(1);
+		gr.query();
+		
+		var interview = {};
+		interview.communication_skills = [];
+		interview.programing = [];
+		interview.concepts_ds_algo = [];
+		interview.design = [];
+		interview.logic = [];
+		interview.others = [];
+		interview.overall_comments = [];
+		
+		while (gr.next()) {
+			interview.communication_skills.push('Round '+ ' ' + gr.getValue('round'));
+			interview.programing.push('Round '+ ' ' + gr.getValue('round'));
+			interview.concepts_ds_algo.push('Round '+ ' ' + gr.getValue('round'));
+			interview.design.push('Round '+ ' ' + gr.getValue('round'));
+			interview.logic.push('Round '+ ' ' + gr.getValue('round'));
+			interview.others.push('Round '+ ' ' + gr.getValue('round'));
+			interview.overall_comments.push('Round '+ ' ' + gr.getValue('round'));	
+			
+			interview.communication_skills.push(gr.getValue('communication_skills'));
+			interview.programing.push(gr.getValue('programing'));
+			interview.concepts_ds_algo.push(gr.getValue('concepts_ds_algo'));
+			interview.design.push(gr.getValue('design'));
+			interview.logic.push(gr.getValue('logic'));
+			interview.others.push(gr.getValue('others'));
+			interview.overall_comments.push(gr.getValue('overall_comments'));	
+			
+			interview.communication_skills.push('');
+			interview.programing.push('');
+			interview.concepts_ds_algo.push('');
+			interview.design.push('');
+			interview.logic.push('');
+			interview.others.push('');
+			interview.overall_comments.push('');
+		}
+		return JSON.stringify(interview);
+		
+	},
+    type: 'Interview'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-05 11:36:23</sys_created_on>
+        <sys_id>b264db6e370f1300a128036973990e16</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>Interview</sys_name>
+        <sys_package display_value="Hiring App" source="x_238546_hiring_ap">817f729837831300a128036973990e47</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Hiring App">817f729837831300a128036973990e47</sys_scope>
+        <sys_update_name>sys_script_include_b264db6e370f1300a128036973990e16</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-06 11:39:45</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" label="Interview" max_length="40" name="x_238546_hiring_ap_interview" type="collection">
+        <element label="Additional Emails" max_length="1000" name="additional_emails" type="string"/>
+        <element label="Communication Skills" max_length="1000" name="communication_skills" type="string"/>
+        <element label="Concepts – DS/ Algo" max_length="1000" name="concepts_ds_algo" type="string"/>
+        <element label="Design" max_length="1000" name="design" type="string"/>
+        <element label="End Time" max_length="40" name="end_time" type="glide_date_time"/>
+        <element label="Interviewer Email" mandatory="true" max_length="40" name="interviewer_email" type="string"/>
+        <element label="Invited" max_length="40" name="invited" type="boolean"/>
+        <element label="Job" max_length="32" name="job" read_only="true" reference="x_238546_hiring_ap_job" type="reference"/>
+        <element label="Logic" max_length="1000" name="logic" type="string"/>
+        <element label="Others" max_length="1000" name="others" type="string"/>
+        <element label="Overall Comments" max_length="1000" name="overall_comments" type="string"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#9;var interviewID = current.sys_id;&#13;&#10;&#9;var jobID = current.job;&#13;&#10;&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;var gr = new GlideRecord('x_238546_hiring_ap_interview');&#13;&#10;&#9;gr.addQuery('job', jobID);&#13;&#10;&#9;gr.addQuery('sys_id', 'DOES NOT CONTAIN', interviewID);&#13;&#10;&#9;gr.orderBy('sys_created_on');&#13;&#10;&#9;&#9;&#13;&#10;&#9;gr.query();&#13;&#10;&#9;&#9;&#13;&#10;&#9;var interview = {};&#13;&#10;&#9;interview.communication_skills = [];&#13;&#10;&#9;interview.programing = [];&#13;&#10;&#9;interview.concepts_ds_algo = [];&#13;&#10;&#9;interview.design = [];&#13;&#10;&#9;interview.logic = [];&#13;&#10;&#9;interview.others = [];&#13;&#10;&#9;interview.overall_comments = [];&#13;&#10;&#9;&#13;&#10;&#9;while (gr.next()) {&#13;&#10;&#9;&#9;interview.communication_skills.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.communication_skills.push(gr.getValue('communication_skills'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.programing.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.programing.push(gr.getValue('programing'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.concepts_ds_algo.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.concepts_ds_algo.push(gr.getValue('concepts_ds_algo'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.design.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.design.push(gr.getValue('design'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.logic.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.logic.push(gr.getValue('logic'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.others.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.others.push(gr.getValue('others'));&#9;&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.overall_comments.push('Round '+ ' ' + gr.getValue('round'));&#13;&#10;&#9;&#9;interview.overall_comments.push(gr.getValue('overall_comments'));&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;interview.communication_skills.push('');&#13;&#10;&#9;&#9;interview.programing.push('');&#13;&#10;&#9;&#9;interview.concepts_ds_algo.push('');&#13;&#10;&#9;&#9;interview.design.push('');&#13;&#10;&#9;&#9;interview.logic.push('');&#13;&#10;&#9;&#9;interview.others.push('');&#13;&#10;&#9;&#9;interview.overall_comments.push('');&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;current.previous_comments_programing = interview.programing.join('\n');&#13;&#10;&#9;current.previous_comments_concepts_ds_algo = interview.concepts_ds_algo.join('\n');&#13;&#10;&#9;current.previous_comments_design = interview.design.join('\n');&#13;&#10;&#9;current.previous_comments_logic = interview.logic.join('\n');&#13;&#10;&#9;current.previous_comments_others = interview.others.join('\n');&#13;&#10;&#9;current.previous_comments_overall_comments = interview.overall_comments.join('\n');&#13;&#10;&#9;&#13;&#10;&#9;return interview.communication_skills.join('\n'); &#13;&#10;&#13;&#10;})(current);" label="Communication Skills" max_length="5000" name="previous_comments_communication_skills" type="string" virtual="true"/>
+        <element label="Concepts - DS/Algo" max_length="5000" name="previous_comments_concepts_ds_algo" type="string" virtual="true"/>
+        <element label="Design" max_length="5000" name="previous_comments_design" type="string" virtual="true"/>
+        <element label="Logic" max_length="5000" name="previous_comments_logic" type="string" virtual="true"/>
+        <element label="Others" max_length="5000" name="previous_comments_others" type="string" virtual="true"/>
+        <element label="Overall Comments" max_length="5000" name="previous_comments_overall_comments" type="string" virtual="true"/>
+        <element label="Programing" max_length="5000" name="previous_comments_programing" type="string" virtual="true"/>
+        <element label="Programing" max_length="1000" name="programing" type="string"/>
+        <element label="Round" mandatory="true" max_length="40" name="round" type="string"/>
+        <element label="Start Time" mandatory="true" max_length="40" name="start_time" type="glide_date_time"/>
+        <index name="index">
+            <element name="job"/>
+        </index>
+    </element>
+</database>

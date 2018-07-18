@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="additional_emails" label="Additional Emails" language="en" table="x_238546_hiring_ap_interview">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>additional_emails</element>
+            <help/>
+            <hint/>
+            <label>Additional Emails</label>
+            <language>en</language>
+            <name>x_238546_hiring_ap_interview</name>
+            <plural>Additional Emails</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-12 09:40:40</sys_created_on>
+            <sys_id>246fb2f437931300a128036973990e8f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Additional Emails</sys_name>
+            <sys_package display_value="Hiring App" source="x_238546_hiring_ap">817f729837831300a128036973990e47</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Hiring App">817f729837831300a128036973990e47</sys_scope>
+            <sys_update_name>sys_documentation_x_238546_hiring_ap_interview_additional_emails_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-12 09:40:40</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

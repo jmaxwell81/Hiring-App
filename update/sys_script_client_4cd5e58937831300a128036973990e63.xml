@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>communication_skills</field>
+        <global>true</global>
+        <messages/>
+        <name>fill_prevvious_interviews_details</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+	g_form.setVisible('job', false);
+	if (g_form.isNewRecord()) {
+		var sysID = g_form.getUniqueValue();
+	var jobID = g_form.getValue('job');
+	
+	var ga = new GlideAjax('Interview');
+	ga.addParam('sysparm_name','getData');
+	ga.addParam('sysparm_interviewID', sysID);
+	ga.addParam('sysparm_jobID', jobID);
+	ga.getXML(handle);
+	
+	}
+	
+	
+	
+	function handle(response) {
+		var res= response.responseXML.documentElement.getAttribute("answer");
+		res = JSON.parse(res);
+		g_form.setValue('previous_comments_communication_skills', res.communication_skills.join('\n'));
+		g_form.setValue('previous_comments_programing', res.programing.join('\n'));
+		g_form.setValue('previous_comments_concepts_ds_algo', res.concepts_ds_algo.join('\n'));
+		g_form.setValue('previous_comments_design', res.design.join('\n'));
+		g_form.setValue('previous_comments_logic', res.logic.join('\n'));
+		g_form.setValue('previous_comments_others', res.others.join('\n'));
+		g_form.setValue('previous_comments_overall_comments', res.overall_comments.join('\n'));
+		
+		g_form.setDisabled('previous_comments_communication_skills',true);
+		g_form.setDisabled('previous_comments_programing',true);
+		g_form.setDisabled('previous_comments_concepts_ds_algo',true);
+		g_form.setDisabled('previous_comments_design',true);
+		g_form.setDisabled('previous_comments_logic',true);
+		g_form.setDisabled('previous_comments_others',true);
+		g_form.setDisabled('previous_comments_overall_comments',true);
+		
+	}
+	
+	
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-06-30 11:34:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>4cd5e58937831300a128036973990e63</sys_id>
+        <sys_mod_count>79</sys_mod_count>
+        <sys_name>fill_prevvious_interviews_details</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Hiring App" source="x_238546_hiring_ap">817f729837831300a128036973990e47</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hiring App">817f729837831300a128036973990e47</sys_scope>
+        <sys_update_name>sys_script_client_4cd5e58937831300a128036973990e63</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-12 15:09:18</sys_updated_on>
+        <table>x_238546_hiring_ap_interview</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

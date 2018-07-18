@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description/>
+        <media_type/>
+        <name>previous_comments</name>
+        <scoped_name>x_238546_hiring_ap_previous_comments</scoped_name>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-09 06:44:41</sys_created_on>
+        <sys_id>64b93afb37031300a128036973990ee5</sys_id>
+        <sys_mod_count>143</sys_mod_count>
+        <sys_name>previous_comments</sys_name>
+        <sys_package display_value="Hiring App" source="x_238546_hiring_ap">817f729837831300a128036973990e47</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hiring App">817f729837831300a128036973990e47</sys_scope>
+        <sys_update_name>sys_ui_macro_64b93afb37031300a128036973990ee5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-10 12:41:35</sys_updated_on>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+	<g2:evaluate>
+        var interviewID = current.sys_id;
+		var jobID = current.job;
+		var totalRecords = 0;
+		
+		var gr = new GlideRecord('x_238546_hiring_ap_interview');
+		gr.addQuery('job', jobID);
+		gr.addQuery('sys_id', 'DOES NOT CONTAIN', interviewID);
+		gr.orderBy('sys_created_on');
+		
+		gr.query();
+		
+		var interview = {};
+		interview.communication_skills = [];
+		interview.programing = [];
+		interview.concepts_ds_algo = [];
+		interview.design = [];
+		interview.logic = [];
+		interview.others = [];
+		interview.rounds = [];
+		interview.overall_comments = [];
+		var communicationcomments="";
+		
+		while (gr.next()) {
+		    totalRecords++;
+<!-- 			interview.communication_skills.push('Round '+ ' ' + gr.getValue('round'));
+			interview.programing.push('Round '+ ' ' + gr.getValue('round'));
+			interview.concepts_ds_algo.push('Round '+ ' ' + gr.getValue('round'));
+			interview.design.push('Round '+ ' ' + gr.getValue('round'));
+			interview.logic.push('Round '+ ' ' + gr.getValue('round'));
+			interview.others.push('Round '+ ' ' + gr.getValue('round'));
+			interview.overall_comments.push('Round '+ ' ' + gr.getValue('round'));	 -->
+		
+		    communicationcomments = gr.getValue('communication_skills');
+			interview.rounds.push(gr.getValue('round'));
+			interview.communication_skills.push(gr.getValue('communication_skills'));
+			interview.programing.push(gr.getValue('programing'));
+			interview.concepts_ds_algo.push(gr.getValue('concepts_ds_algo'));
+			interview.design.push(gr.getValue('design'));
+			interview.logic.push(gr.getValue('logic'));
+			interview.others.push(gr.getValue('others'));
+			interview.overall_comments.push(gr.getValue('overall_comments'));	
+			
+			<!-- interview.communication_skills.push('');
+			interview.programing.push('');
+			interview.concepts_ds_algo.push('');
+			interview.design.push('');
+			interview.logic.push('');
+			interview.others.push('');
+			interview.overall_comments.push(''); -->
+		}
+		//interview = JSON.stringify(interview);
+	
+	</g2:evaluate>
+
+	<p>Previous Comments</p>
+	<table class="wide" cell_spacing="2" cell_padding="2">
+		<tr>
+			<td></td>
+		<j2:forEach var="jvar_key" items="$[interview.rounds]">
+			<td>Round $[jvar_key]</td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Communication Skills</td>
+		<j2:forEach var="jvar_key" items="$[interview.communication_skills]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Programing</td>
+		<j2:forEach var="jvar_key" items="$[interview.programing]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Concepts DS/Algo</td>
+		<j2:forEach var="jvar_key" items="$[interview.concepts_ds_algo]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Design</td>
+		<j2:forEach var="jvar_key" items="$[interview.design]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Logic</td>
+		<j2:forEach var="jvar_key" items="$[interview.logic]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Others</td>
+		<j2:forEach var="jvar_key" items="$[interview.others]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		<tr>
+			<td>Overall Comments</td>
+		<j2:forEach var="jvar_key" items="$[interview.overall_comments]">
+			<td><textarea>$[jvar_key]</textarea></td>
+		</j2:forEach>
+		</tr>
+		
+  </table>
+	
+</j:jelly>]]></xml>
+    </sys_ui_macro>
+</record_update>
