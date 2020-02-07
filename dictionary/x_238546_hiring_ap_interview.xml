@@ -20,7 +20,7 @@
         <element label="Overall Comments" max_length="5000" name="previous_comments_overall_comments" type="string" virtual="true"/>
         <element label="Programing" max_length="5000" name="previous_comments_programing" type="string" virtual="true"/>
         <element label="Programing" max_length="1000" name="programing" type="string"/>
-        <element label="Round" mandatory="true" max_length="40" name="round" type="string"/>
+        <element label="Round" mandatory="true" max_length="40" name="round" type="String"/>
         <element label="Start Time" mandatory="true" max_length="40" name="start_time" type="glide_date_time"/>
         <index name="index">
             <element name="job"/>
